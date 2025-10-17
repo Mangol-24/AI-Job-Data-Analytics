@@ -32,15 +32,15 @@ The dashboard is Designed to
   Trend Analysis: Salary evolution over time, skill demand patterns
 - **AI-Assisted Development**
 - **Tools Utilized:**
-  ChatGPT/GPT-4: DAX formula optimization, SQL query refinement, methodological guidance
-  GitHub Copilot: Code suggestions and documentation assistance
-  Custom AI Assistants: Domain-specific insights for AI job market trends
+    ChatGPT/GPT-4: DAX formula optimization, SQL query refinement, methodological guidance
+    GitHub Copilot: Code suggestions and documentation assistance
+    Custom AI Assistants: Domain-specific insights for AI job market trends
 
 - **AI Collaboration Areas:**
-  DAX measure debugging and optimization
-  Statistical interpretation of salary growth patterns
-  Visualization best practices and layout recommendations
-  Insight formulation and narrative development
+    DAX measure debugging and optimization
+    Statistical interpretation of salary growth patterns
+    Visualization best practices and layout recommendations
+    Insight formulation and narrative development
 
 ## Dataset Used 
 The analysis uses a comprehensive dataset containing:
