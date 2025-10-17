@@ -55,7 +55,8 @@ The analysis uses a comprehensive dataset containing:
 ## **Dashboard Preview**
  - **AI Data and Inteligence Dashboard** [File Link](https://drive.google.com/file/d/1eE8xUetQucp16O50dNcADlgA-748vmn8/view?usp=sharing)
 
-## SQL Queries (Sample)
+## **SQL Queries** (Sample)
+
 -- **The Remote Work Salary Trade-off**   [File Link](https://drive.google.com/file/d/1c4F2WIS881lMI8hl4uFAcQ0Ura8wEASN/view?usp=drive_link)
   ```
    SELECT remote_ratio,
@@ -130,7 +131,104 @@ HAVING COUNT(*) >= 5
 ORDER BY education_required, avg_salary DESC;
  ```
 
-**DAX Measures in Power BI**
+##**DAX Measures in Power BI**(Sample)
+
+--**Average Salary by Exp & Size**
+```
+Avg Salary by Exp & Size = 
+CALCULATE(
+    AVERAGE(ai_job_dataset[salary_usd]),
+    ALLEXCEPT(ai_job_dataset, ai_job_dataset[Experience_level], ai_job_dataset[company_size])
+)
+ ```
+
+--**Average Salary by Location**
+```
+Location Avg Salary = 
+CALCULATE(
+    AVERAGE(ai_job_dataset[salary_usd]),
+    ALLEXCEPT(ai_job_dataset, ai_job_dataset[company_location])
+)
+ ```
+
+-- **Remote Salary Premium**
+```
+Remote Salary Premium = 
+VAR RemoteAvg = CALCULATE(AVERAGE(ai_job_dataset[salary_usd]), ai_job_dataset[Remote_ratio] = 100)
+VAR OfficeAvg = CALCULATE(AVERAGE(ai_job_dataset[salary_usd]), ai_job_dataset[Remote_ratio] = 0)
+RETURN DIVIDE(RemoteAvg - OfficeAvg, OfficeAvg)
+ ```
+
+--**Top 10 Skills Table**
+```
+Top 10 Skills Table = 
+VAR SkillsList =
+    DATATABLE(
+        "Skill", STRING,
+        {
+            {"Python"},
+            {"TensorFlow"},
+            {"PyTorch"},
+            {"AWS"},
+            {"Azure"},
+            {"GCP"},
+            {"Docker"},
+            {"Kubernetes"},
+            {"SQL"},
+            {"MLOps"},
+            {"Java"},
+            {"Spark"},
+            {"Hadoop"},
+            {"Git"},
+            {"Mathematics"},
+            {"Statistics"},
+            {"NLP"},
+            {"Computer Vision"},
+            {"Data Visualization"},
+            {"Tableau"}
+        }
+    )
+VAR SkillsWithFrequency =
+    ADDCOLUMNS(
+        SkillsList,
+        "Frequency",
+            VAR CurrentSkill = [Skill]
+            RETURN
+                CALCULATE(
+                    COUNTROWS(ai_job_dataset),
+                    FILTER(
+                        ai_job_dataset,
+                        CONTAINSSTRING(ai_job_dataset[required_skills], CurrentSkill)
+                    )
+                )
+    )
+VAR FilteredSkills =
+    FILTER(SkillsWithFrequency, [Frequency] > 0)
+RETURN
+    TOPN(
+        10,
+        FilteredSkills,
+        [Frequency],
+        DESC
+    )
+
+ ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
