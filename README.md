@@ -75,7 +75,7 @@ The analysis uses a comprehensive dataset containing:
 - Cloud platform (GCP) and version control (Git) skills are in the top 10, emphasizing the need for scalable, collaborative development environments.
 
 ## **Dashboard Preview**
- - **AI Data and Inteligence Dashboard** [File Link](https://drive.google.com/file/d/1eE8xUetQucp16O50dNcADlgA-748vmn8/view?usp=sharing)
+ - **AI Data and Inteligence Dashboard** [File Link](https://drive.google.com/file/d/1eE8xUetQucp16O50dNcADlgA-748vmn8/view?usp=drive_link)
 
 ## **SQL Queries** (Sample)
 
