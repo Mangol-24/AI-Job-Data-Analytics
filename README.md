@@ -52,8 +52,11 @@ The analysis uses a comprehensive dataset containing:
 - Executive roles command significantly higher salaries, but the growth rate diminishes at higher seniority levels.
 - Cloud platform (GCP) and version control (Git) skills are in the top 10, emphasizing the need for scalable, collaborative development environments.
 
-## SQL Queries
-- **The Remote Work Salary Trade-off** [File Link](https://drive.google.com/file/d/1c4F2WIS881lMI8hl4uFAcQ0Ura8wEASN/view?usp=drive_link)
+## **Dashboard Preview**
+ - **AI Data and Inteligence Dashboard** [File Link](https://drive.google.com/file/d/1eE8xUetQucp16O50dNcADlgA-748vmn8/view?usp=sharing)
+
+## SQL Queries (Sample)
+-- **The Remote Work Salary Trade-off**   [File Link](https://drive.google.com/file/d/1c4F2WIS881lMI8hl4uFAcQ0Ura8wEASN/view?usp=drive_link)
   ```
    SELECT remote_ratio,
 	case
@@ -74,11 +77,60 @@ The analysis uses a comprehensive dataset containing:
   ORDER BY remote_ratio, experience_level;
   ```
 
+-- **Most Common Job Titles by Experience Level** [File Link](https://drive.google.com/file/d/1HhsZuYshGeJock4EiXa62R41aAGGW3D1/view?usp=drive_link)
+```
+SELECT experience_level,job_title,
+	COUNT(*) AS title_count
+FROM ai_job_dataset
+GROUP BY experience_level, job_title
+HAVING COUNT(*) = (
+	SELECT MAX(COUNT)
+	FROM (
+		SELECT experience_level,job_title, COUNT(*) AS count
+		FROM ai_job_dataset
+		GROUP BY experience_level, job_title
+	) AS subq
+	WHERE subq.experience_level = ai_job_dataset.experience_level
+)
+ORDER BY 
+	case experience_level
+		when 'EN' then 1
+		when 'MI' then 2
+		when 'SI' then 3
+		when 'EX' then 4
+	END;
+ ```
 
+-- **Remote Work Adoption by Industry** [File Link](https://drive.google.com/file/d/17zL1eckUbyhgcl9ydfsyMKrS29KAHrCD/view?usp=drive_link)
+```
+SELECT 
+    industry,
+    AVG(remote_ratio) as avg_remote_ratio,
+    COUNT(*) as total_jobs,
+    SUM(CASE WHEN remote_ratio >= 50 THEN 1 ELSE 0 END) as hybrid_remote_jobs,
+    SUM(CASE WHEN remote_ratio = 100 THEN 1 ELSE 0 END) as fully_remote_jobs,
+    ROUND((SUM(CASE WHEN remote_ratio = 100 THEN 1 ELSE 0 END) * 100.0 / COUNT(*)), 2) as fully_remote_percentage
+FROM ai_job_dataset
+GROUP BY industry
+HAVING COUNT(*) >= 5
+ORDER BY avg_remote_ratio DESC;
+ ```
 
+--**Experience vs Education ROI**  [File link](https://drive.google.com/file/d/1zrqR7NKbeGB9e347DDOzRAQ6ro7xHaCk/view?usp=drive_link)
+```
+SELECT 
+    education_required,
+    experience_level,
+    AVG(salary_usd) as avg_salary,
+    AVG(years_experience) as avg_years_exp,
+    COUNT(*) as job_count
+FROM ai_job_dataset
+GROUP BY education_required, experience_level
+HAVING COUNT(*) >= 5
+ORDER BY education_required, avg_salary DESC;
+ ```
 
-
-
+**DAX Measures in Power BI**
 
 
 
