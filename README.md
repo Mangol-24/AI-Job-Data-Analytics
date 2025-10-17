@@ -20,6 +20,28 @@ The dashboard is Designed to
 - SQL → Query practice for trend and route analysis
 - Power BI (DAX) → Dashboard design and calculation
 
+## **Process and Methodology**
+- **Data Cleaning**: Removed duplicates, handled missing values, standardized date and location formats.
+- **Exploratory Analysis:** Identified Python as the most demanded skill (~30% higher than SQL) ,Discovered near-even split in remote work distribution,
+  Confirmed strong correlation between experience level and salary progression
+- **SQL Queries:** Used GROUP BY, HAVING, ORDER BY and CASE Function to extract key metrics.
+- **Visualization:** Created Power BI dashboard to present insights clearly.
+- **DAX Measures Developed:**
+  KPI Measures: Total Jobs, Average Salary, Highest Salary, Remote Ratio
+  Comparative Analysis: Experience-level salaries, industry benchmarks
+  Trend Analysis: Salary evolution over time, skill demand patterns
+- **AI-Assisted Development**
+- **Tools Utilized:**
+  ChatGPT/GPT-4: DAX formula optimization, SQL query refinement, methodological guidance
+  GitHub Copilot: Code suggestions and documentation assistance
+  Custom AI Assistants: Domain-specific insights for AI job market trends
+
+- **AI Collaboration Areas:**
+  DAX measure debugging and optimization
+  Statistical interpretation of salary growth patterns
+  Visualization best practices and layout recommendations
+  Insight formulation and narrative development
+
 ## Dataset Used 
 The analysis uses a comprehensive dataset containing:
 - **15,000+ job postings** in AI and Data Science fields
